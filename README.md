@@ -8,43 +8,64 @@ The current code is capable of getting executed with two browsers Firefox and Ch
 
  - Machine running with a Windows OS
  - Python 3 installed on the machine
+ - git is installed on the machine
  - Chrome version is running with Version 91.0.4472.77 (Official Build) (64-bit)
  - FireFox version supported is when its run on 89.0 (64-bit)
  - [Allure](https://docs.qameta.io/allure/) is installed on the machine
  - Make sure the command ```allure --version``` returns a version number in command line
 
 ## Steps to run the test cases on your machine
-1) Create a virtual environment by using the below command at a folder where you want the test cases and code to be placed
+
+1) Open command prompt using cmd command
+```
+cmd
+```
+2) Create a new folder at a location you want the code to be present and run
+
+```
+mkdir Sample
+```
+3) Navigate into the Sample folder
+```
+cd Sample
+```
+3) Inside the Sample folder clone the repository of the code
+
+```
+git clone https://github.com/Deepak-Palamoli-Chaliyadath/OrangeHRMwithPytest.git
+```
+
+4) Create a virtual environment by using the below command at a folder where you want the test cases and code to be placed
 
 ```
 pip install virtualenv
 ```
 
-2) Run the command
+5) Run the command
  
 ```
 virtualenv mypython
 ```
 
-3) Activate the below command for windows 
+6) Activate the below command for windows 
 ```
 mypython\Scripts\activate
 ``` 
-4) Navigate into the Project folder OrangeHRMwithPytest
+7) Navigate into the Project folder OrangeHRMwithPytest
 ```
 cd OrangeHRMwithPytest
 ``` 
-5) All the libraries required for the test suite are run using the below command
+8) All the libraries required for the test suite are run using the below command
 ```
 pip install -r requirement.txt
 ```
 
-6) The below command is used to Execute the test cases in command line 
+9) The below command is used to Execute the test cases in command line 
 ```
 pytest Tests --alluredir=Reports
 ```
 
-7) The below command is used after the execution for displaying the allure report on your browser
+10) The below command is used after the execution for displaying the allure report on your browser
 ```
 allure serve Reports 
 ```
