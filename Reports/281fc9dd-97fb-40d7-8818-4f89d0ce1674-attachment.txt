@@ -1,0 +1,2 @@
+firefox
+<selenium.webdriver.firefox.webdriver.WebDriver (session="7299cf98-52d8-4a06-8871-00d90fa75a88")>
