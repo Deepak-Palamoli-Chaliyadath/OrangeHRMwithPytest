@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from Pages.Locators import Locators
 from selenium.webdriver.common.by import By
@@ -20,4 +22,5 @@ class DashboardPage():
 
     # Clicks on Logout on Top Right of Dashboard page after Welcome is clicked
     def clickLogout(self):
+        time.sleep(2)
         self.driver.find_element(By.XPATH, Locators.db_lbl_Logout_xpath).click()

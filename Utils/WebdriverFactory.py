@@ -11,15 +11,14 @@ class WebdriverFactory:
 
     def get_driver(self, browser):
         try:
-            print(browser)
+            ROOT_DIR = os.path.abspath(os.curdir)
             if browser.lower() == "firefox":
-                driver = webdriver.Firefox(executable_path="C:\\Users\\Dpkpc\\PycharmProjects\\DNBAssignment Pytest\\Driver\\geckodriver.exe")
-              #driver = webdriver.Firefox(
-              #executable_path=os.path.realpath(__file__)+"\\Driver\\geckodriver.exe")
+                # gecko = os.path.normpath(os.path.join(os.path.dirname(__file__), 'geckodriver'))
+                driver = webdriver.Firefox(executable_path=ROOT_DIR + "\\Driver\\geckodriver.exe")
             elif browser.lower() == "chrome":
-                print("We are here")
-                driver = webdriver.Chrome(
-                    executable_path="C:\\Users\\Dpkpc\\PycharmProjects\\DNBAssignment Pytest\\Driver\\chromedriver.exe")
+                 driver = webdriver.Chrome(executable_path=ROOT_DIR +"\\Driver\\chromedriver.exe")
+                #driver = webdriver.Firefox(
+                #    executable_path="C:\\Users\\Dpkpc\\PycharmProjects\\OrangeHRMwithPytest\\Driver\\chromedriver.exe")
             else:
                 raise Exception("Invalid Browser value provided")
             print(driver)

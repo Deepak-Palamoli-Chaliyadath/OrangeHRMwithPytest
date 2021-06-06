@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from Pages.Locators import Locators
 from selenium.webdriver.common.by import By
@@ -39,7 +41,9 @@ class LoginPage():
 
     # Excel iteration of input data and login attempts using that data on Login page
     def excel_iteration(self):
-        path = 'C:\\Users\\Dpkpc\\PycharmProjects\\DNBAssignment Pytest\\Driver\\InputTestData.xlsx'
+        ROOT_DIR = os.path.abspath(os.curdir)
+        #path = 'C:\\Users\\Dpkpc\\PycharmProjects\\DNBAssignment Pytest\\Driver\\InputTestData.xlsx'
+        path= ROOT_DIR + '\\Driver\\InputTestData.xlsx'
         int_rows = ExcelFunctions.getNumberOfRows(path, "InputTestData")
         int_cols = ExcelFunctions.getNumberOfColumns(path, "InputTestData")
         for iCount in range(2, int_rows + 1):
@@ -52,6 +56,7 @@ class LoginPage():
             self.LoginMethod(txt_username, txt_password)
             element = self.driver.find_element(By.ID, Locators.hp_lbl_ErrorMessage_id)
             # Verification of the Error message with the expected error message in Excel
+            print(element.text + " " + txt_errormessage)
             assert element.text == txt_errormessage
 
     def LoginMethod(self, username, password):

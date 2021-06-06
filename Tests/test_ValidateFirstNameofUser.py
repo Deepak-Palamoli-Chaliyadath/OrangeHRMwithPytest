@@ -12,6 +12,7 @@ from Utils.WebdriverFactory import WebdriverFactory
 import sys
 from Pages import CommonData
 
+
 ################## Documentation############################
 # Verify the Valid login on Orange HRM website and validates
 # ... the name of the user in my info tab and welcome label
@@ -19,7 +20,7 @@ from Pages import CommonData
 class Test_ValidateFirstNameofUser():
 
     def test_validate_user_from_myinfo(self):
-        baseUrl = "https://opensource-demo.orangehrmlive.com"
+        driver = None
         try:
             driver = WebdriverFactory().get_driver(CommonData.BROWSER)
             driver.get(CommonData.BASEURL)
@@ -38,24 +39,22 @@ class Test_ValidateFirstNameofUser():
             # Capture the name on Welcome label
             db = DashboardPage(driver)
             txtFirstName = db.captureWelcomeName()
-            print(txtFirstName)
+            print("Welcome screen name "+txtFirstName)
 
             # Capture the name on My info Page
             mi = MyInfoPage(driver)
             mi_txtFirstName = mi.fetchFirstName()
-            print(mi_txtFirstName)
-
+            print("My Info screen First name "+mi_txtFirstName)
             # Assert that both the names are same
             assert txtFirstName == mi_txtFirstName
+            # Customer clicks on Welcome and logout
+            db.clickWelcome()
+            db.clickLogout()
+            driver.close()
+
         except:
-            allure.attach(driver.get_screenshot_as_png(),
-                          name="Screenshot of Error",
-                          attachment_type=allure.attachment_type.PNG)
-            allure.attach(str(sys.exc_info()[0]), 'Error Trace', allure.attachment_type.TEXT)
-
-        # Customer clicks on Welcome and logout
-        db.clickWelcome()
-        db.clickLogout()
-
-        # Closing of the open browser
-        driver.close()
+            if driver:
+                allure.attach(driver.get_screenshot_as_png(),
+                              name="Screenshot of Error",
+                              attachment_type=allure.attachment_type.PNG)
+                allure.attach(str(sys.exc_info()[0]), 'Error Trace', allure.attachment_type.TEXT)

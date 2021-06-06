@@ -9,6 +9,8 @@ import allure
 import base64
 import pytest_failed_screenshot
 from Pages import CommonData
+import sys
+from Pages.Locators import Locators
 
 # sys.path.append("C://Users/Dpkpc/PycharmProjects/DNBAssignment Pytest")
 import pytest
@@ -18,13 +20,18 @@ import pytest
 # Verify the Valid login on Orange HRM website
 # ... and prints the name of the user in allure reports
 
-class Test_Login():
+class Test_LoginofUser():
 
     def test_Login(self):
         driver = WebdriverFactory().get_driver(CommonData.BROWSER)
         driver.get(CommonData.BASEURL)
         lp = LoginPage(driver)
-        lp.LoginMethod()
+        #lp.LoginMethod()
+        username = lp.captureUserName()
+        password = lp.capturePassword()
+        lp.setUsername(username)
+        lp.setPassword(password)
+        lp.clickLogin()
         time.sleep(3)
         db = DashboardPage(driver)
         txt_first_name = db.captureWelcomeName()
