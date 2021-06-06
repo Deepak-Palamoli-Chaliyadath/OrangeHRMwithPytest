@@ -13,7 +13,7 @@ The current code is capable of getting executed with two browsers Firefox and Ch
  - [Allure](https://docs.qameta.io/allure/) is installed on the machine
  - Make sure the command ```allure --version``` returns a version number in command line
 
-**Steps to run the test cases on your machine**
+## Steps to run the test cases on your machine
 1) Create a virtual environment by using the below command at a folder where you want the test cases and code to be placed
 
 ```
